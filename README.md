@@ -1,3 +1,3 @@
-# Full Stack Template
+# Urgent Scan Checkin
 
-Basic files to get a head start on the development of a fullstack web app.
+Fullstack app for Urgent Scan USA. It will allow Urgent Scan's patients to checkin when they arrive to their appointments.
