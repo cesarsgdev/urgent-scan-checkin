@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const events = require("../controllers/events");
 
 // Endpoint to get the list of all events => GET /api/events
 router.get("/", async (req, res) => {
@@ -29,15 +30,17 @@ router.get("/:id", async (req, res) => {
 });
 
 // Endpoint to create a new event => POST /api/events
-router.post("/", async (req, res) => {
-  try {
-    res.status(200).json({ success: true, message: `Event created...` });
-    return;
-  } catch (e) {
-    res.status(200).json({ success: false, message: e.message });
-    return;
-  }
-});
+// router.post("/", async (req, res) => {
+//   try {
+//     res.status(200).json({ success: true, message: `Event created...` });
+//     return;
+//   } catch (e) {
+//     res.status(200).json({ success: false, message: e.message });
+//     return;
+//   }
+// });
+
+router.post("/", events.createEvent);
 
 //Endpoint to modify a single event by event :id => PUT /api/events/:id
 router.put("/:id", async (req, res) => {
