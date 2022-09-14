@@ -53,16 +53,17 @@ const modifyCheckin = async (req, res) => {
 
     if (checkin) {
       res.status(200).json({ success: true, data: checkin });
+      return;
     } else {
-      res
-        .status(200)
-        .json({
-          success: false,
-          message: `Checkin with object ${req.params.id} not found. Please try again.`,
-        });
+      res.status(200).json({
+        success: false,
+        message: `Checkin with object ${req.params.id} not found. Please try again.`,
+      });
+      return;
     }
   } catch (e) {
     res.status(200).json({ success: false, message: e.message });
+    return;
   }
 };
 
