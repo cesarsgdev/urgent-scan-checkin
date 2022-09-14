@@ -1,3 +1,4 @@
+const { json, urlencoded } = require("express");
 const express = require("express");
 const app = express();
 const connectDB = require("./config/database");
@@ -8,6 +9,9 @@ connectDB();
 require("dotenv").config();
 
 const PORT = process.env.PORT || 3001;
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/events", events);
 
