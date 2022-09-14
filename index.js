@@ -3,6 +3,7 @@ const express = require("express");
 const app = express();
 const connectDB = require("./config/database");
 const events = require("./routes/events");
+const checkins = require("./routes/checkins");
 
 connectDB();
 
@@ -14,6 +15,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/events", events);
+app.use("/api/checkins", checkins);
 
 app.get("/", (req, res) => {
   res.send("Entry endpoint...");
