@@ -16,6 +16,12 @@ const checkinSchema = new Schema(
       required: true,
       trim: true,
     },
+    eventId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "events",
+      required: true,
+      trim: true,
+    },
   },
   { timestamps: true }
 );
