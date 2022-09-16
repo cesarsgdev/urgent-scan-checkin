@@ -1,7 +1,8 @@
 const User = require("../models/Users");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-const key = "urgentScanUSA";
+require("dotenv").config();
+const key = process.env.JWT_KEY;
 
 const loginUser = async (req, res) => {
   const { email, password } = req.body;

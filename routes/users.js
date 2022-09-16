@@ -1,6 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const users = require("../controllers/users");
+const verifyToken = require("../middlewares/verifyToken");
+
+// Add token verification middleware to all routes.
+
+router.use(verifyToken);
 
 /*
 All of routes below should be only accessible by an admin or another registered user.
