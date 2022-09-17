@@ -1,7 +1,13 @@
+import { useState, useEffect } from "react";
+import { Navigate } from "react-router-dom";
 import InputText from "../components/forms/inputs/InputText";
 import InputSubmit from "../components/forms/inputs/InputSubmit";
 import logo from "../images/logo.svg";
 const Login = () => {
+  const [logedIn, setLogedIn] = useState(false);
+  const token = localStorage.getItem("token");
+
+  if (logedIn || token) return <Navigate to="/admin" />;
   return (
     <>
       <section className=" container m-auto h-[100vh] flex items-center justify-center flex-col gap-[40px]">

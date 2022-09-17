@@ -5,10 +5,12 @@ import Nav from "./nav/Nav";
 import { useEffect, useState } from "react";
 import jwt_decode from "jwt-decode";
 import { useLocation } from "react-router-dom";
+import { BiMenuAltRight } from "react-icons/bi";
 
 const Layout = () => {
   const token = localStorage.getItem("token");
   const [isExpired, setIsExpired] = useState(false);
+  const [mobileMenu, setMobileMenu] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -28,7 +30,17 @@ const Layout = () => {
     <>
       <Header>
         <Logo />
-        <Nav />
+        <Nav
+          mobileMenuStatus={mobileMenu}
+          setMobileMenuStatus={setMobileMenu}
+        />
+        <BiMenuAltRight
+          size={36}
+          className="md:hidden"
+          onClick={() => {
+            setMobileMenu(!mobileMenu);
+          }}
+        />
       </Header>
       {!token || isExpired ? <Navigate to="/login"></Navigate> : <Outlet />}
     </>
