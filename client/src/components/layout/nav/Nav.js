@@ -10,7 +10,7 @@ const Nav = ({ mobileMenuStatus, setMobileMenuStatus }) => {
         ref={nav}
         className={`mainMenu fixed ${
           !mobileMenuStatus ? "translate-x-[-100%]" : "translate-x-0"
-        } px-5 py-10 text-white bg-aqua-100 w-[66%] top-0 left-0 h-[100%] transition duration-500 md:block md:relative md:w-[100%] md:bg-transparent md:text-gray-900 md:p-0`}
+        } px-5 py-10 text-white bg-aqua-100 w-[66%] top-0 left-0 h-[100%] transition duration-500 md:translate-x-0 md:relative md:w-[100%] md:bg-transparent md:text-gray-900 md:p-0`}
       >
         <ul className=" mainMenu flex h-[100%] flex-col items-center gap-4 font-bold text-lg md:flex-row">
           <li>
