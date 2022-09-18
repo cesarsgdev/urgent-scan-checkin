@@ -1,24 +1,7 @@
-import { useState, useEffect } from "react";
 import { TailSpin } from "react-loader-spinner";
+import EventControllers from "./EventsControllers";
 
-const Events = () => {
-  const [events, setEvents] = useState(false);
-
-  useEffect(() => {
-    const getEvents = async () => {
-      const events = await fetch("/api/events");
-      const data = await events.json();
-
-      if (data.success) {
-        setEvents(data.data);
-      }
-
-      console.log(data);
-    };
-
-    getEvents();
-  }, []);
-
+const Events = ({ events }) => {
   return (
     <>
       {!events && (
