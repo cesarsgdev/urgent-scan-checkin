@@ -28,31 +28,37 @@ const Events = () => {
       )}
       {events && (
         <div className="eventsList flex flex-col gap-4">
-          <div className="headersBar font-bold text-sm antialiased text-gray-400 flex w-[100%] justify-between gap-4 px-8 uppercase tracking-tighter">
+          <div className="headersBar hidden font-bold text-sm antialiased text-gray-400 w-[100%] justify-between gap-4 px-8 uppercase tracking-tighter md:flex">
             <span className="w-[30%]">Event</span>
-            <span>City</span>
-            <span>Time</span>
-            <span>Date</span>
+            <div className="headersEventMeta flex md:w-[60%] md: justify-between">
+              <span className="md:w-[30%] text-center">City</span>
+              <span className="md:w-[30%] text-center">Time</span>
+              <span className="md:w-[30%] text-center">Date</span>
+            </div>
           </div>
           {events.map((event) => {
             return (
               <article
-                className="flex justify-between items-center bg-white px-8 py-4 gap-4 rounded-md shadow-sm cursor-pointer"
+                className="flex flex-col gap-4 px-4 py-4 bg-white cursor-pointer rounded-md shadow-sm md:justify-between md:items-center md:px-8 md:gap-4 md:flex md:flex-row md:hover:scale-[1.01] md:transition md:duration-500"
                 key={event._id}
               >
-                <div className="eventInfo flex flex-col gap-0 w-[30%]">
-                  <h2 className="text-2xl font-[800] text-aqua-100 tracking-tight antialiased">
+                <div className="sm:w-[100%] eventInfo flex flex-col gap-0 md:w-[30%]">
+                  <h2 className="sm:text-xl font-[800] text-aqua-100 tracking-tight antialiased md:text-2xl">
                     {event.name}
                   </h2>
-                  <h3 className=" text-sm font-bold text-gray-400">
-                    {event.location}
-                  </h3>
+                  <h3 className=" text-sm text-gray-400">{event.location}</h3>
                 </div>
-                <span className="font-bold tracking-tight text-gray-400 antialiased">
-                  {event.city}, {event.state}
-                </span>
-                <span className="font-bold antialiased">{event.time}</span>
-                <span className="font-bold antialiased">{event.date}</span>
+                <div className="eventMeta flex gap-1 justify-between text-xs md:w-[60%] md:text-sm">
+                  <span className="font-bold tracking-tight text-gray-400 antialiased md:w-[30%] md:text-center">
+                    {event.city}, {event.state}
+                  </span>
+                  <span className="font-bold antialiased md:w-[30%] md:text-center">
+                    {event.time}
+                  </span>
+                  <span className="font-bold antialiased md:w-[30%] md:text-center">
+                    {event.date}
+                  </span>
+                </div>
               </article>
             );
           })}
