@@ -20,7 +20,7 @@ const Nav = ({ mobileMenuStatus, setMobileMenuStatus }) => {
               }}
               className={({ isActive }) =>
                 isActive
-                  ? `text-aqua-200 md:text-aqua-100`
+                  ? `text-aqua-200 md:text-white md:bg-aqua-100 md:p-2 md:rounded-md`
                   : "transition duration-500 hover:text-aqua-100"
               }
               to="/admin/events"

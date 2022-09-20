@@ -3,6 +3,7 @@ import EventsList from "../lists/events/Events";
 import Button from "../components/buttons/Button";
 import Overlay from "../components/overlays/Overlay";
 import Popup from "../components/popups/Popup";
+import CreateEventForm from "../components/forms/CreateEventForm";
 
 const Events = () => {
   const [events, setEvents] = useState(false);
@@ -16,8 +17,6 @@ const Events = () => {
       if (data.success) {
         setEvents(data.data);
       }
-
-      console.log(data);
     };
 
     getEvents();
@@ -30,8 +29,10 @@ const Events = () => {
   return (
     <>
       {overlay && (
-        <Overlay onClick={handleClick}>
-          <Popup></Popup>
+        <Overlay>
+          <Popup close={handleClick}>
+            <CreateEventForm />
+          </Popup>
         </Overlay>
       )}
       <section className="flex flex-col gap-8 container m-auto px-4 py-10">
