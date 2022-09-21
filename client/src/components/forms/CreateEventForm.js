@@ -119,16 +119,20 @@ const CreateEventForm = () => {
       });
     }
     console.log(errors);
+    console.log(form);
   };
 
   return (
     <>
-      <Form title="Create Event" formHandler={handleSubmit}>
+      <Form
+        title={`${form.name ? `Update` : `Create`} Event`}
+        formHandler={handleSubmit}
+      >
         <InputText
           label="Name"
           name="name"
           id="name"
-          val={form}
+          value={form.name}
           onChange={handleChange}
           error={errors.name}
           required
@@ -137,7 +141,7 @@ const CreateEventForm = () => {
           label="Location"
           name="location"
           id="location"
-          val={form}
+          value={form.location}
           onChange={handleChange}
           error={errors.location}
           required
@@ -147,7 +151,7 @@ const CreateEventForm = () => {
           name="city"
           id="city"
           width={40}
-          val={form}
+          value={form.city}
           onChange={handleChange}
           error={errors.city}
           required
@@ -157,7 +161,7 @@ const CreateEventForm = () => {
           name="state"
           id="state"
           width={40}
-          val={form}
+          value={form.state}
           onChange={handleChange}
           error={errors.state}
           required
