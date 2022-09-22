@@ -62,21 +62,6 @@ const Nav = ({ mobileMenuStatus, setMobileMenuStatus }) => {
               Users
             </NavLink>
           </li>
-
-          <li>
-            <NavLink
-              onClick={() => {
-                setMobileMenuStatus(!mobileMenuStatus);
-              }}
-              className={({ isActive }) =>
-                isActive ? `activeLink` : "notActive"
-              }
-              to="/admin/settings"
-            >
-              <FaCog className="text-[16px]" />
-              Settings
-            </NavLink>
-          </li>
           <li>
             <NavLink
               onClick={() => {
@@ -89,6 +74,20 @@ const Nav = ({ mobileMenuStatus, setMobileMenuStatus }) => {
             >
               <FaUserCog className="text-[16px]" />
               Account
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              onClick={() => {
+                setMobileMenuStatus(!mobileMenuStatus);
+              }}
+              className={({ isActive }) =>
+                isActive ? `activeLink` : "notActive"
+              }
+              to="/admin/settings"
+            >
+              <FaCog className="text-[16px]" />
+              Settings
             </NavLink>
           </li>
         </ul>

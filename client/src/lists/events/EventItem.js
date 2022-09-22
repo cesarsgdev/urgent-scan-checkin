@@ -12,7 +12,7 @@ const EventItem = ({ event }) => {
       key={event._id}
     >
       <button
-        className="absolute top-2 right-0 text-gray-400 md:top-[calc(50%-14px)] text-aqua-100"
+        className="absolute top-2 right-0 md:top-[calc(50%-14px)] text-aqua-100"
         onClick={handleSubMenu}
         onBlur={() => {
           setSubMenu(false);

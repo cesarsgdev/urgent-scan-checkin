@@ -5,6 +5,7 @@ import Checkins from "./pages/Checkins";
 import Welcome from "./pages/Welcome";
 import Login from "./pages/Login";
 import IndexGuest from "./pages/IndexGuest";
+import Users from "./pages/Users";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Route index element={<Welcome />}></Route>
             <Route path="/admin/events" element={<Events />}></Route>
             <Route path="/admin/checkins" element={<Checkins />}></Route>
+            <Route path="/admin/users" element={<Users />}></Route>
           </Route>
         </Routes>
       </BrowserRouter>
