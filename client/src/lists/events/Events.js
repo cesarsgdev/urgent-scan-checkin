@@ -4,17 +4,19 @@ import { BiDotsVerticalRounded } from "react-icons/bi";
 import { useState, useContext, useEffect } from "react";
 import EventItem from "./EventItem";
 import useEvents from "../../components/contexts/EventsContext";
+import { useAPI } from "../../hooks/useAPI";
 
 const Events = ({ events, setOverlay }) => {
   const context = useEvents();
+  const API = useAPI();
 
   useEffect(() => {
     const getEvents = async () => {
-      const events = await fetch("/api/events");
-      const data = await events.json();
+      const events = await API.get("events");
+      console.log(events);
 
-      if (data.success) {
-        context.setEvents(data.data);
+      if (events.success) {
+        context.setEvents(events.data);
       }
     };
 

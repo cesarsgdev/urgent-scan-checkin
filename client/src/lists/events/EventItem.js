@@ -9,6 +9,8 @@ const EventItem = ({ event, setOverlay }) => {
   };
 
   const context = useEvents();
+
+  const date = new Date(event.date);
   return (
     <article
       className="relative flex flex-col gap-4 px-4 py-4 bg-white cursor-pointer rounded-md shadow-sm md:justify-between md:items-center md:px-8 md:gap-4 md:flex md:flex-row  md:transition md:duration-500"
@@ -57,10 +59,10 @@ const EventItem = ({ event, setOverlay }) => {
           {event.city}, {event.state}
         </span>
         <span className="font-bold antialiased md:w-[30%] md:text-center">
-          {event.time}
+          {date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
         </span>
         <span className="font-bold antialiased md:w-[30%] md:text-center">
-          {event.date}
+          {date.toLocaleDateString()}
         </span>
       </div>
     </article>

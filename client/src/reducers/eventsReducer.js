@@ -19,6 +19,14 @@ const eventsReducer = (state, action) => {
         ...state,
         events: payload.events,
       };
+    case "CREATE_EVENT":
+      console.log(state.events);
+      return {
+        ...state,
+        events: [payload.event, ...state.events],
+        pop: false,
+      };
+
     case "DELETE_EVENT":
       return {
         ...state,

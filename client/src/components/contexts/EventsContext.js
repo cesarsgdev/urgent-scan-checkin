@@ -1,10 +1,12 @@
 import { createContext, useContext, useReducer } from "react";
+import { useAPI } from "../../hooks/useAPI";
 import eventsReducer, { initialState } from "../../reducers/eventsReducer";
 
 const Events = createContext(initialState);
 
 export const EventsContext = ({ children }) => {
   const [state, dispatch] = useReducer(eventsReducer, initialState);
+  const API = useAPI();
 
   const setEvents = (events) => {
     dispatch({
@@ -13,6 +15,19 @@ export const EventsContext = ({ children }) => {
         events,
       },
     });
+  };
+
+  const createEvent = async (data) => {
+    const event = await API.create("events", data);
+    console.log(event);
+    if (event.success) {
+      dispatch({
+        type: "CREATE_EVENT",
+        payload: {
+          event: event.data,
+        },
+      });
+    }
   };
 
   const deleteEvent = (id) => {
@@ -44,6 +59,7 @@ export const EventsContext = ({ children }) => {
     editState: state.editState,
     pop: state.pop,
     setEvents,
+    createEvent,
     deleteEvent,
     editEvent,
     handlePopup,

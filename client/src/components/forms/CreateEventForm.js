@@ -114,8 +114,10 @@ const CreateEventForm = () => {
         };
       });
     }
-    console.log(errors);
+    // console.log(errors);
     console.log(form);
+
+    context.createEvent(form);
   };
 
   return (
