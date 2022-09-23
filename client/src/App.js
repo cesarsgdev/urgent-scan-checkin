@@ -6,6 +6,7 @@ import Welcome from "./pages/Welcome";
 import Login from "./pages/Login";
 import IndexGuest from "./pages/IndexGuest";
 import Users from "./pages/Users";
+import { EventsContext } from "./components/contexts/EventsContext";
 
 function App() {
   return (
@@ -16,7 +17,14 @@ function App() {
           <Route path="/login" element={<Login />}></Route>
           <Route path="/admin" element={<Layout />}>
             <Route index element={<Welcome />}></Route>
-            <Route path="/admin/events" element={<Events />}></Route>
+            <Route
+              path="/admin/events"
+              element={
+                <EventsContext>
+                  <Events />
+                </EventsContext>
+              }
+            ></Route>
             <Route path="/admin/checkins" element={<Checkins />}></Route>
             <Route path="/admin/users" element={<Users />}></Route>
           </Route>

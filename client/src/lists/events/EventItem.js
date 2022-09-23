@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { BiDotsVerticalRounded } from "react-icons/bi";
+import useEvents from "../../components/contexts/EventsContext";
 
-const EventItem = ({ event }) => {
+const EventItem = ({ event, setOverlay }) => {
   const [subMenu, setSubMenu] = useState(false);
   const handleSubMenu = () => {
     setSubMenu(!subMenu);
   };
+
+  const context = useEvents();
   return (
     <article
       className="relative flex flex-col gap-4 px-4 py-4 bg-white cursor-pointer rounded-md shadow-sm md:justify-between md:items-center md:px-8 md:gap-4 md:flex md:flex-row  md:transition md:duration-500"
@@ -20,16 +23,26 @@ const EventItem = ({ event }) => {
       >
         <BiDotsVerticalRounded size={28} />
         {subMenu && (
-          <ul className="flex flex-col items-start gap-2 text-md antialiased font-bold rounded-md right-[0] bg-aqua-400 px-4 py-2 absolute z-[1000] text-white md:top-[100%] md:w-[100px] ">
-            <li className="uppercase text-[10px] text-aqua-200">Options</li>
+          <ul className="flex flex-col items-start gap-2 text-md antialiased font-bold rounded-md right-[0] bg-aqua-400 py-2 absolute z-[1000] text-white md:top-[100%] md:w-[100px] ">
+            <li className="uppercase text-[10px] text-aqua-200 px-4">
+              Options
+            </li>
             <li
+              className="w-[100%] flex flex-start px-4 py-2 transition duration-500 hover:bg-aqua-300"
               onClick={() => {
-                alert("hola");
+                context.editEvent(event._id);
               }}
             >
               Edit
             </li>
-            <li>Delete</li>
+            <li
+              className="w-[100%] flex flex-start px-4 py-2 transition duration-500 hover:bg-aqua-300"
+              onClick={() => {
+                context.deleteEvent(event._id);
+              }}
+            >
+              Delete
+            </li>
           </ul>
         )}
       </button>

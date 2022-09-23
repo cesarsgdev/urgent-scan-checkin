@@ -4,23 +4,12 @@ import Button from "../components/buttons/Button";
 import Overlay from "../components/overlays/Overlay";
 import Popup from "../components/popups/Popup";
 import CreateEventForm from "../components/forms/CreateEventForm";
+import useEvents from "../components/contexts/EventsContext";
 
 const Events = () => {
-  const [events, setEvents] = useState(false);
-  const [overlay, setOverlay] = useState(false);
-
-  useEffect(() => {
-    const getEvents = async () => {
-      const events = await fetch("/api/events");
-      const data = await events.json();
-
-      if (data.success) {
-        setEvents(data.data);
-      }
-    };
-
-    getEvents();
-  }, []);
+  const context = useEvents();
+  const [overlay, setOverlay] = useState(context.pop);
+  useEffect(() => {}, []);
 
   const handleClick = (e) => {
     e.stopPropagation();
@@ -28,10 +17,10 @@ const Events = () => {
   };
   return (
     <>
-      {overlay && (
+      {context.pop && (
         <Overlay>
           <Popup close={handleClick}>
-            <CreateEventForm />
+            <CreateEventForm update={context.editState} />
           </Popup>
         </Overlay>
       )}
@@ -41,10 +30,10 @@ const Events = () => {
           <Button
             label="Create Event"
             className=" bg-aqua-400 text-white select-none"
-            onClick={handleClick}
+            onClick={context.handlePopup}
           />
         </div>
-        <EventsList events={events} />
+        <EventsList setOverlay={setOverlay} />
       </section>
     </>
   );

@@ -4,15 +4,11 @@ import InputText from "./inputs/InputText";
 import InputSubmit from "./inputs/InputSubmit";
 import DateTimePicker from "react-datetime-picker";
 import { useEffect } from "react";
+import useEvents from "../contexts/EventsContext";
 
 const CreateEventForm = () => {
-  const [form, setForm] = useState({
-    name: "",
-    location: "",
-    city: "",
-    state: "",
-    date: new Date(),
-  });
+  const context = useEvents();
+  const [form, setForm] = useState(context.editState);
 
   const [errors, setErrors] = useState({
     name: "",
@@ -171,7 +167,10 @@ const CreateEventForm = () => {
           onChange={handleDateChange}
           value={form.date}
         />
-        <InputSubmit value="Create Event" onSubmit={handleSubmit} />
+        <InputSubmit
+          value={`${form.name ? `Update` : `Create`} Event`}
+          onSubmit={handleSubmit}
+        />
       </Form>
     </>
   );
