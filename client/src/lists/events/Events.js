@@ -3,6 +3,8 @@ import { useEffect } from "react";
 import EventItem from "./EventItem";
 import useEvents from "../../components/contexts/EventsContext";
 import { useAPI } from "../../hooks/useAPI";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
+import "../../styles/animations.css";
 
 const Events = () => {
   const context = useEvents();
@@ -37,9 +39,19 @@ const Events = () => {
               <span className="md:w-[30%] text-center">Date</span>
             </div>
           </div>
-          {context.events.map((event) => {
-            return <EventItem key={event._id} event={event} />;
-          })}
+          <TransitionGroup component={null}>
+            {context.events.map((event) => {
+              return (
+                <CSSTransition
+                  key={event._id}
+                  timeout={1000}
+                  classNames="eventItem"
+                >
+                  <EventItem key={event._id} event={event} />
+                </CSSTransition>
+              );
+            })}
+          </TransitionGroup>
         </div>
       )}
     </>
