@@ -2,7 +2,7 @@ const Event = require("../models/Events");
 
 const getAllEvents = async (req, res) => {
   try {
-    const events = await Event.find();
+    const events = await Event.find().sort({ date: 1 });
     res.status(200).json({ success: true, data: events });
     return;
   } catch (e) {
