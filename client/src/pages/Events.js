@@ -1,26 +1,28 @@
-import { useState, useEffect } from "react";
 import EventsList from "../lists/events/Events";
 import Button from "../components/buttons/Button";
 import Overlay from "../components/overlays/Overlay";
 import Popup from "../components/popups/Popup";
 import CreateEventForm from "../components/forms/CreateEventForm";
 import useEvents from "../components/contexts/EventsContext";
+import DeleteAlert from "../components/alerts/DeleteAlert";
 
 const Events = () => {
   const context = useEvents();
-  const [overlay, setOverlay] = useState(context.pop);
-  useEffect(() => {}, []);
 
-  const handleClick = (e) => {
-    e.stopPropagation();
-    setOverlay(!overlay);
-  };
   return (
     <>
       {context.pop && (
         <Overlay>
-          <Popup close={handleClick}>
+          <Popup close={true}>
             <CreateEventForm update={context.editState} />
+          </Popup>
+        </Overlay>
+      )}
+
+      {context.alert && (
+        <Overlay>
+          <Popup>
+            <DeleteAlert />
           </Popup>
         </Overlay>
       )}
@@ -33,7 +35,7 @@ const Events = () => {
             onClick={context.handlePopup}
           />
         </div>
-        <EventsList setOverlay={setOverlay} />
+        <EventsList />
       </section>
     </>
   );

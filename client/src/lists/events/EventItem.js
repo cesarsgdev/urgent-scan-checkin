@@ -2,15 +2,15 @@ import { useState } from "react";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import useEvents from "../../components/contexts/EventsContext";
 
-const EventItem = ({ event, setOverlay }) => {
+const EventItem = ({ event }) => {
   const [subMenu, setSubMenu] = useState(false);
   const handleSubMenu = () => {
     setSubMenu(!subMenu);
   };
 
   const context = useEvents();
-
   const date = new Date(event.date);
+
   return (
     <article
       className="relative flex flex-col gap-4 px-4 py-4 bg-white cursor-pointer rounded-md shadow-sm md:justify-between md:items-center md:px-8 md:gap-4 md:flex md:flex-row  md:transition md:duration-500"
@@ -40,7 +40,7 @@ const EventItem = ({ event, setOverlay }) => {
             <li
               className="w-[100%] flex flex-start px-4 py-2 transition duration-500 hover:bg-aqua-300"
               onClick={() => {
-                context.deleteEvent(event._id);
+                context.setAlert(event._id);
               }}
             >
               Delete

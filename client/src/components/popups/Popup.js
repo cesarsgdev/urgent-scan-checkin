@@ -11,7 +11,7 @@ const Popup = ({ children, close }) => {
   return (
     <>
       <div
-        className="relative w-[90%] h-[auto] min-h-[400px] bg-white rounded-md shadow-lg border-aqua-100 p-8 lg:w-[40%] xl:w-[33%]"
+        className="relative w-[90%] h-[auto] bg-white rounded-md shadow-lg border-aqua-100 p-8 lg:w-[40%] xl:w-[33%]"
         onClick={handleClick}
       >
         {close && (

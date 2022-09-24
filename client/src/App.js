@@ -8,10 +8,15 @@ import IndexGuest from "./pages/IndexGuest";
 import Users from "./pages/Users";
 import { EventsContext } from "./components/contexts/EventsContext";
 
+// import the toast library
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 function App() {
   return (
     <>
       <BrowserRouter>
+        <ToastContainer closeButton={false} />
         <Routes>
           <Route path="/" element={<IndexGuest />}></Route>
           <Route path="/login" element={<Login />}></Route>

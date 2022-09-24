@@ -44,4 +44,14 @@ export class API {
     const data = await query.json();
     return data;
   }
+
+  async delete(type, id) {
+    const query = await fetch(
+      `${this.baseUrl}/${type}/${id}`,
+      this.options("DELETE")
+    );
+
+    const data = await query.json();
+    return data;
+  }
 }

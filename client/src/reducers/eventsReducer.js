@@ -8,6 +8,10 @@ export const initialState = {
     date: new Date(),
   },
   pop: false,
+  isCreating: false,
+  alert: false,
+  alertID: null,
+  isEditingForm: false,
 };
 
 const eventsReducer = (state, action) => {
@@ -23,15 +27,17 @@ const eventsReducer = (state, action) => {
       console.log(state.events);
       return {
         ...state,
-        events: [payload.event, ...state.events],
-        pop: false,
+        events: [payload.event, ...state.events].sort(
+          (a, b) => new Date(a.date) - new Date(b.date)
+        ),
+        pop: !state.pop,
       };
 
     case "DELETE_EVENT":
       return {
         ...state,
         events: state.events.filter((event) => {
-          return event._id !== payload.id;
+          return event._id !== payload.event._id;
         }),
       };
 
@@ -41,7 +47,8 @@ const eventsReducer = (state, action) => {
         editState: state.events.find((event) => {
           return event._id === payload.id;
         }),
-        pop: true,
+        pop: !state.pop,
+        isEditingForm: !state.isEditingForm,
       };
       console.log(result);
       return result;
@@ -50,6 +57,19 @@ const eventsReducer = (state, action) => {
       return {
         ...state,
         pop: !state.pop,
+      };
+
+    case "SET_ALERT":
+      return {
+        ...state,
+        alert: !state.alert,
+        alertID: payload.id,
+      };
+
+    case "IS_CREATING":
+      return {
+        ...state,
+        isCreating: !state.isCreating,
       };
 
     default:
