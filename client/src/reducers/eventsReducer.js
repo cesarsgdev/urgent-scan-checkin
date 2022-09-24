@@ -85,6 +85,7 @@ const eventsReducer = (state, action) => {
         editState: {
           ...state.defaultForm,
         },
+        isEditingForm: false,
       };
 
     case "SET_ALERT":
