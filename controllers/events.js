@@ -51,7 +51,8 @@ const modifyEvent = async (req, res) => {
   try {
     const event = await Event.findByIdAndUpdate(
       { _id: req.params.id },
-      { name: req.body.name }
+      req.body,
+      { new: true }
     );
     if (event) {
       res.status(200).json({ success: true, data: event });
