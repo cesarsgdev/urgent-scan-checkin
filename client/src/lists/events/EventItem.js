@@ -15,6 +15,7 @@ const EventItem = ({ event }) => {
     <article
       className="relative flex flex-col gap-4 px-4 py-4 bg-white cursor-pointer rounded-md shadow-sm md:justify-between md:items-center md:px-8 md:gap-4 md:flex md:flex-row  md:transition md:duration-500"
       key={event._id}
+      id={event._id}
     >
       <button
         className="absolute top-2 right-0 md:top-[calc(50%-14px)] text-aqua-100"
@@ -32,7 +33,7 @@ const EventItem = ({ event }) => {
             <li
               className="w-[100%] flex flex-start px-4 py-2 transition duration-500 hover:bg-aqua-300"
               onClick={() => {
-                context.editEvent(event._id);
+                context.setEditEvent(event._id);
               }}
             >
               Edit

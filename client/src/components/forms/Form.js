@@ -1,6 +1,7 @@
-const Form = ({ title, children, formHandler }) => {
+const Form = ({ title, children, formHandler, id = "eventForm" }) => {
   return (
     <form
+      id={id}
       className="flex flex-row flex-wrap gap-4 justify-center"
       onSubmit={formHandler}
     >

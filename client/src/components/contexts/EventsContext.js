@@ -46,7 +46,6 @@ export const EventsContext = ({ children }) => {
   };
 
   const deleteEvent = async (id) => {
-    console.log(id);
     dispatch({
       type: "SET_ALERT",
       payload: {
@@ -66,13 +65,43 @@ export const EventsContext = ({ children }) => {
     }
   };
 
-  const editEvent = (id) => {
+  const setEditEvent = (id) => {
     dispatch({
-      type: "EDIT_EVENT",
+      type: "SET_EDIT_EVENT",
       payload: {
         id,
       },
     });
+  };
+
+  const editEvent = async (id, payload) => {
+    dispatch({
+      type: "IS_CREATING",
+    });
+
+    const event = await API.edit("events", id, payload);
+
+    if (event.success) {
+      dispatch({
+        type: "EDIT_EVENT",
+        payload: {
+          event: event.data,
+        },
+      });
+      toast.success("Event changes have been saved", {
+        position: toast.POSITION.TOP_CENTER,
+      });
+    } else {
+      dispatch({
+        type: "IS_CREATING",
+      });
+      dispatch({
+        type: "CLOSE_OVERLAY",
+      });
+      toast.error(`Ooops! Something went wrong! Please try again!`, {
+        position: toast.POSITION.TOP_CENTER,
+      });
+    }
   };
 
   const setAlert = (id) => {
@@ -101,6 +130,7 @@ export const EventsContext = ({ children }) => {
     setEvents,
     createEvent,
     deleteEvent,
+    setEditEvent,
     editEvent,
     setAlert,
     handlePopup,

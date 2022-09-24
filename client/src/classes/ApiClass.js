@@ -45,6 +45,16 @@ export class API {
     return data;
   }
 
+  async edit(type, id, payload) {
+    const query = await fetch(
+      `${this.baseUrl}/${type}/${id}`,
+      this.options("PUT", payload)
+    );
+
+    const data = await query.json();
+    return data;
+  }
+
   async delete(type, id) {
     const query = await fetch(
       `${this.baseUrl}/${type}/${id}`,
