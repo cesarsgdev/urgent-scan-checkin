@@ -5,6 +5,7 @@ import Popup from "../components/popups/Popup";
 import CreateEventForm from "../components/forms/CreateEventForm";
 import useEvents from "../components/contexts/EventsContext";
 import DeleteAlert from "../components/alerts/DeleteAlert";
+import Section from "../components/layout/body/Section";
 import { CSSTransition } from "react-transition-group";
 import { useState } from "react";
 
@@ -69,7 +70,7 @@ const Events = () => {
           </CSSTransition>
         </Overlay>
       </CSSTransition>
-      <section className="flex flex-col gap-8 container m-auto px-4 py-10">
+      <Section>
         <div className="header flex justify-between items-center">
           <h1 className=" text-4xl font-bold">Events</h1>
           <Button
@@ -79,7 +80,7 @@ const Events = () => {
           />
         </div>
         <EventsList />
-      </section>
+      </Section>
     </>
   );
 };
