@@ -2,24 +2,20 @@ import { useState, useEffect } from "react";
 import { useAPI } from "../hooks/useAPI";
 import Section from "../components/layout/body/Section";
 import SectionHeader from "../components/layout/body/SectionHeader";
+import useListUsers from "../components/contexts/ListUsersContext";
+import UsersList from "../lists/users/Users";
 
 const Users = () => {
-  const API = useAPI();
-  useEffect(() => {
-    const getUsers = async () => {
-      const users = await API.get("users");
-
-      if (users.success) {
-        console.log(users.data);
-      }
-    };
-
-    getUsers();
-  }, []);
+  // const API = useAPI();
+  // const { getUserList } = useListUsers();
+  // useEffect(() => {
+  //   getUserList();
+  // }, []);
   return (
     <>
       <Section>
         <SectionHeader title="Users"></SectionHeader>
+        <UsersList />
       </Section>
     </>
   );
