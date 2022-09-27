@@ -13,7 +13,7 @@ const EventItem = ({ event }) => {
 
   return (
     <article
-      className="relative flex flex-col gap-4 px-4 py-4 bg-white cursor-pointer rounded-md shadow-sm md:justify-between md:items-center md:px-8 md:gap-4 md:flex md:flex-row  md:transition md:duration-500"
+      className="relative flex flex-col gap-4 px-4 py-4 bg-white cursor-pointer rounded-md shadow-sm md:justify-between md:items-center md:px-8 md:gap-4 md:flex md:flex-row  md:transition md:duration-500 md: hover:border-l-[10px] hover:border-l-aqua-100 hover:scale-[1.01] hover:z-[10000]"
       key={event._id}
       id={event._id}
     >
