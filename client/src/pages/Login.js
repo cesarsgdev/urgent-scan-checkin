@@ -7,8 +7,8 @@ import useUser from "../components/contexts/UserContext";
 const Login = () => {
   const { logIn, checkToken } = useUser();
   const [userDetails, setUserDetails] = useState({
-    email: "adrisepulvedaglz@gmail.com",
-    password: "pepinillos94",
+    email: "",
+    password: "",
   });
 
   const handleSubmit = (e) => {
