@@ -3,27 +3,17 @@ import Header from "./header/Header";
 import Logo from "./logo/Logo";
 import Nav from "./nav/Nav";
 import { useEffect, useState } from "react";
-import jwt_decode from "jwt-decode";
 import { useLocation } from "react-router-dom";
 import { BiMenuAltRight } from "react-icons/bi";
+import useUser from "../contexts/UserContext";
 
 const Layout = () => {
   const token = localStorage.getItem("token");
-  const [isExpired, setIsExpired] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
   const location = useLocation();
+  const { isExpired, checkToken } = useUser();
 
   useEffect(() => {
-    const checkToken = () => {
-      if (token) {
-        const decoded = jwt_decode(token);
-        if (Date.now() >= decoded.exp * 1000) {
-          localStorage.removeItem("token");
-          setIsExpired(true);
-        }
-      }
-    };
-
     checkToken();
   }, [location.pathname]);
   return (
