@@ -6,6 +6,7 @@ import CreateEventForm from "../components/forms/CreateEventForm";
 import useEvents from "../components/contexts/EventsContext";
 import DeleteAlert from "../components/alerts/DeleteAlert";
 import Section from "../components/layout/body/Section";
+import SectionHeader from "../components/layout/body/SectionHeader";
 import { CSSTransition } from "react-transition-group";
 import { useState } from "react";
 
@@ -71,14 +72,13 @@ const Events = () => {
         </Overlay>
       </CSSTransition>
       <Section>
-        <div className="header flex justify-between items-center">
-          <h1 className=" text-4xl font-bold">Events</h1>
+        <SectionHeader title="Events">
           <Button
             label="Create Event"
             className=" bg-aqua-400 text-white select-none"
             onClick={context.handlePopup}
           />
-        </div>
+        </SectionHeader>
         <EventsList />
       </Section>
     </>

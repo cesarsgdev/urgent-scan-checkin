@@ -1,9 +1,12 @@
+import Section from "../components/layout/body/Section";
+import SectionHeader from "../components/layout/body/SectionHeader";
+
 const Checkins = () => {
   return (
     <>
-      <section className="container m-auto px-4 py-10">
-        <h1 className=" text-4xl font-bold">Checkins</h1>
-      </section>
+      <Section>
+        <SectionHeader title="Checkins"></SectionHeader>
+      </Section>
     </>
   );
 };
