@@ -1,6 +1,7 @@
 export class API {
   constructor() {
     this.baseUrl = "/api/";
+    this.auth = "/auth/";
     this.token = localStorage.getItem("token");
     this.headers = {
       "Content-Type": "application/json",
@@ -59,6 +60,16 @@ export class API {
     const query = await fetch(
       `${this.baseUrl}/${type}/${id}`,
       this.options("DELETE")
+    );
+
+    const data = await query.json();
+    return data;
+  }
+
+  async login(userDetails) {
+    const query = await fetch(
+      `${this.auth}/login`,
+      this.options("POST", userDetails)
     );
 
     const data = await query.json();
