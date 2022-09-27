@@ -9,6 +9,8 @@ import Section from "../components/layout/body/Section";
 import SectionHeader from "../components/layout/body/SectionHeader";
 import { CSSTransition } from "react-transition-group";
 import { useState } from "react";
+import { BsCalendarWeekFill } from "react-icons/bs";
+import { FaCog, FaUserCog } from "react-icons/fa";
 
 const Events = () => {
   const context = useEvents();
@@ -72,7 +74,10 @@ const Events = () => {
         </Overlay>
       </CSSTransition>
       <Section>
-        <SectionHeader title="Events">
+        <SectionHeader
+          title="Events"
+          icon={<BsCalendarWeekFill size={28} className="text-aqua-100" />}
+        >
           <Button
             label="Create Event"
             className=" bg-aqua-400 text-white select-none"

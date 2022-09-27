@@ -1,7 +1,6 @@
 import { NavLink } from "react-router-dom";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import {
-  BsCalendarEvent,
   BsFillPersonCheckFill,
   BsPeopleFill,
   BsCalendarWeekFill,

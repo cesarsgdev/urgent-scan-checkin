@@ -2,19 +2,17 @@ import { useState, useEffect } from "react";
 import { useAPI } from "../hooks/useAPI";
 import Section from "../components/layout/body/Section";
 import SectionHeader from "../components/layout/body/SectionHeader";
-import useListUsers from "../components/contexts/ListUsersContext";
 import UsersList from "../lists/users/Users";
+import { BsPeopleFill } from "react-icons/bs";
 
 const Users = () => {
-  // const API = useAPI();
-  // const { getUserList } = useListUsers();
-  // useEffect(() => {
-  //   getUserList();
-  // }, []);
   return (
     <>
       <Section>
-        <SectionHeader title="Users"></SectionHeader>
+        <SectionHeader
+          title="Users"
+          icon={<BsPeopleFill size={28} className="text-aqua-100" />}
+        ></SectionHeader>
         <UsersList />
       </Section>
     </>
