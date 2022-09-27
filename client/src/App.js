@@ -7,6 +7,7 @@ import Login from "./pages/Login";
 import IndexGuest from "./pages/IndexGuest";
 import Users from "./pages/Users";
 import { EventsContext } from "./components/contexts/EventsContext";
+import { ListUsersContext } from "./components/contexts/ListUsersContext";
 import { UserContext } from "./components/contexts/UserContext";
 
 // import the toast library
@@ -33,7 +34,14 @@ function App() {
                 }
               ></Route>
               <Route path="/admin/checkins" element={<Checkins />}></Route>
-              <Route path="/admin/users" element={<Users />}></Route>
+              <Route
+                path="/admin/users"
+                element={
+                  <ListUsersContext>
+                    <Users />
+                  </ListUsersContext>
+                }
+              ></Route>
             </Route>
           </Routes>
         </UserContext>
