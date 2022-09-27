@@ -94,7 +94,11 @@ const Nav = ({ mobileMenuStatus, setMobileMenuStatus }) => {
             </NavLink>
           </li>
           <li>
-            <a className="notActive" onClick={logOut} href="#">
+            <a
+              className="notActive md:bg-red-700 md:text-white md:hover:bg-red-500"
+              onClick={logOut}
+              href="#"
+            >
               <BsPower />
               Logout
             </a>
