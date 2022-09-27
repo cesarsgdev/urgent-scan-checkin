@@ -5,11 +5,14 @@ import {
   BsFillPersonCheckFill,
   BsPeopleFill,
   BsCalendarWeekFill,
+  BsPower,
 } from "react-icons/bs";
 import { FaCog, FaUserCog } from "react-icons/fa";
+import useUser from "../../contexts/UserContext";
 
 const Nav = ({ mobileMenuStatus, setMobileMenuStatus }) => {
   const nav = useRef();
+  const { logOut } = useUser();
 
   return (
     <>
@@ -89,6 +92,12 @@ const Nav = ({ mobileMenuStatus, setMobileMenuStatus }) => {
               <FaCog className="text-[16px]" />
               Settings
             </NavLink>
+          </li>
+          <li>
+            <a className="notActive" onClick={logOut} href="#">
+              <BsPower />
+              Logout
+            </a>
           </li>
         </ul>
       </nav>
