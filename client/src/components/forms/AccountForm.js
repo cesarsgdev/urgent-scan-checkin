@@ -13,12 +13,13 @@ const AccountForm = () => {
   const [original, setOriginal] = useState(null);
   const [button, setButton] = useState(true);
   const [password, setPassword] = useState("");
+  const [passwordBtn, setPasswordButton] = useState(true);
+  const { _id: id } = jwt_decode(localStorage.getItem("token"));
   useEffect(() => {
     const getUser = async () => {
-      const { _id: id } = jwt_decode(localStorage.getItem("token"));
       const user = await API.getSingle("users", id);
       if (user.success) {
-        setAccount(user.data);
+        setAccount({ name: user.data.name, email: user.data.email });
         setOriginal({ name: user.data.name, email: user.data.email });
       }
       return;
@@ -29,16 +30,19 @@ const AccountForm = () => {
 
   useEffect(() => {
     if (account) {
-      const compare = {
-        name: account.name,
-        email: account.email,
-      };
-
       setButton(
-        (current) => JSON.stringify(compare) === JSON.stringify(original)
+        (current) => JSON.stringify(account) === JSON.stringify(original)
       );
     }
   }, [account]);
+
+  useEffect(() => {
+    if (password) {
+      setPasswordButton(false);
+    } else {
+      setPasswordButton(true);
+    }
+  }, [password]);
 
   const handleChange = (e) => {
     setAccount((account) => {
@@ -46,26 +50,51 @@ const AccountForm = () => {
     });
   };
 
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const user = await API.edit("users", account._id, account);
+    const user = await API.edit("users", id, account);
     if (user.success) {
-      toast.success("User Details have been updated", {
+      toast.success("User details have been updated", {
         position: toast.POSITION.BOTTOM_RIGHT,
       });
       setButton(true);
+    } else {
+      toast.error("Something went wrong. Please try again.", {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
+    }
+  };
+
+  const handleSubmitPasswordChange = async (e) => {
+    e.preventDefault();
+    const user = await API.edit("users", id, { password });
+    if (user.success) {
+      toast.success("Your password has been updated", {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
+      setPasswordButton(true);
+      setPassword("");
+    } else {
+      toast.error("Something went wrong. Please try again.", {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
+      setPassword("");
     }
   };
   return (
     <>
       {!account && (
-        <div className="loadingEvents flex items-center justify-center h-[auto]">
+        <div className="loadingUserDetails flex items-center justify-center h-[auto]">
           <TailSpin color="#009fbd" width={40} height={40} />
         </div>
       )}
       {account && (
         <>
-          <Form formHandler={handleSubmit}>
+          <Form formHandler={handleSubmit} id="updateDetails">
             <h1 className="text-3xl font-bold antialiased tracking-tight uppercase text-gray-500 text-left w-[100%]">
               Update Details
             </h1>
@@ -85,23 +114,35 @@ const AccountForm = () => {
               value={account.email}
               onChange={handleChange}
             />
-            <InputSubmit value="Save" disabled={button} />
+            <InputSubmit
+              value="Save"
+              disabled={button}
+              id="submitUserDetails"
+            />
           </Form>
 
-          <Form className="w-[50%]" formHandler={handleSubmit}>
+          <Form
+            className="w-[50%]"
+            formHandler={handleSubmitPasswordChange}
+            id="changePassword"
+          >
             <h1 className="text-3xl font-bold antialiased tracking-tight uppercase text-gray-500 text-left w-[100%]">
               Update Password
             </h1>
             <InputText
               label="Password"
-              id="name"
-              name="name"
-              type="text"
+              id="password"
+              name="password"
+              type="password"
               value={password}
-              onChange={handleChange}
+              onChange={handlePasswordChange}
             />
 
-            <InputSubmit value="Change Password" disabled={button} />
+            <InputSubmit
+              value="Change Password"
+              disabled={passwordBtn}
+              id="submitChangePassword"
+            />
           </Form>
         </>
       )}
