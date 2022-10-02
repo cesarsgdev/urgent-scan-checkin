@@ -26,11 +26,23 @@ const userSchema = new Schema(
       trim: true,
       required: true,
       minLength: 8,
-      select: false,
     },
   },
   { timestamps: true }
 );
+
+userSchema.pre("findOneAndUpdate", async function (next) {
+  const user = this;
+  try {
+    if (user._update.password) {
+      const hashed = await bcrypt.hash(user._update.password, saltRounds);
+      user._update.password = hashed;
+    }
+    next();
+  } catch (e) {
+    return next(err);
+  }
+});
 
 userSchema.pre("save", function (next) {
   const user = this;
