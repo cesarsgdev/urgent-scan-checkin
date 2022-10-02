@@ -36,6 +36,13 @@ export class API {
     return data;
   }
 
+  async getSingle(type, id) {
+    const query = await fetch(`${this.baseUrl}/${type}/${id}`, this.options());
+    const data = await query.json();
+
+    return data;
+  }
+
   async create(type, payload) {
     const query = await fetch(
       `${this.baseUrl}/${type}`,
