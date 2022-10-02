@@ -6,6 +6,7 @@ import Welcome from "./pages/Welcome";
 import Login from "./pages/Login";
 import IndexGuest from "./pages/IndexGuest";
 import Account from "./pages/Account";
+import Settings from "./pages/Settings";
 import Users from "./pages/Users";
 import { EventsContext } from "./components/contexts/EventsContext";
 import { ListUsersContext } from "./components/contexts/ListUsersContext";
@@ -44,6 +45,7 @@ function App() {
                 }
               ></Route>
               <Route path="/admin/account" element={<Account />}></Route>
+              <Route path="/admin/settings" element={<Settings />}></Route>
             </Route>
           </Routes>
         </UserContext>
